@@ -13,6 +13,19 @@ class App extends Component {
     ],
   };
 
+  //lifecycle hooks can only be in class components, not sfc
+  constructor(props) {
+    // constructor is a lifecycle hook of a comp of comp creation
+    super(props);
+    console.log("App - Constructor");
+    //this.state = this.props.something; // not this.setState because it's only called when a component is rendered and placed in the DOM
+  }
+
+  componentDidMount() {
+    // also a lifecycle hook. Good for AJAX calls to get data from server
+    console.log("App - Mounted");
+  }
+
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
@@ -34,6 +47,8 @@ class App extends Component {
     this.setState({ counters });
   };
   render() {
+    // also a lifecycle hook
+    console.log("App - Rendered");
     return (
       <React.Fragment>
         <NavBar
